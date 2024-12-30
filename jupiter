@@ -1,0 +1,20 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+data=pd.read_csv("/content/Breast_cancer_data.csv")
+data.head(10)
+data.isnull().sum()
+sample=data[["mean_radius","mean_area","mean_texture"]]
+plt.figure(figsize=(10,5))
+sns.scatterplot(data=sample,x="mean_radius",y="mean_area",hue="mean_texture",palette="rainbow")
+x=data.iloc[:,3:15]
+x.head(10)
+y=data["mean_area"]
+y.head(10)
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
+x_train.shape
+y_train.shape
+y_test.shape
+x_test.shape
